@@ -1,0 +1,10 @@
+Analyzing kind_app...                                           
+
+  error - The getter 'transparent' isn't defined for the type 'AppColors' - lib\presentation\screens\settings_screen.dart:124:31 - undefined_getter
+  error - The getter 'displayLarge' isn't defined for the type 'AppTypography' - lib\presentation\screens\settings_screen.dart:131:36 - undefined_getter
+   info - 'activeColor' is deprecated and shouldn't be used. Use activeThumbColor or activeTrackColor instead. This feature was deprecated after v3.31.0-2.0.pre - lib\presentation\screens\settings_screen.dart:177:13 - deprecated_member_use
+   info - 'activeColor' is deprecated and shouldn't be used. Use activeThumbColor or activeTrackColor instead. This feature was deprecated after v3.31.0-2.0.pre - lib\presentation\screens\settings_screen.dart:186:13 - deprecated_member_use
+  error - Invalid constant value - lib\presentation\screens\settings_screen.dart:263:88 - invalid_constant
+  error - The getter 'grey400' isn't defined for the type 'AppColors' - lib\presentation\screens\settings_screen.dart:263:98 - undefined_getter
+
+6 issues found. (ran in 3.1s)
