@@ -8,7 +8,7 @@
 
 **One Kind Message** est une application minimaliste et contemplative conçue pour propager la bienveillance à travers le monde.
 
-Le concept est simple : écrivez un message positif (une prière, un verset, un encouragement), et envoyez-le anonymement dans le monde. En retour, vous recevez un message écrit par un autre inconnu. 
+Le concept est simple : écrivez un message positif (une prière, un verset, un encouragement), et envoyez-le anonymement dans le monde. En retour, vous recevez un message écrit par un autre inconnu.
 
 Pas de likes, pas de commentaires, pas de profils publics. Juste des mots qui font du bien.
 

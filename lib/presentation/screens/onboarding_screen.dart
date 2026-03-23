@@ -158,34 +158,48 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     final step = _steps[index];
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Illustration
-                          step.illustration,
-                          const SizedBox(height: 40),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          final maxIllustrationHeight =
+                              (constraints.maxHeight * 0.45).clamp(0.0, 240.0);
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              // Illustration (responsive height)
+                              SizedBox(
+                                width: 220,
+                                height: maxIllustrationHeight,
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: step.illustration,
+                                ),
+                              ),
+                              const SizedBox(height: 32),
 
-                          // Titre
-                          Text(
-                            step.title,
-                            textAlign: TextAlign.center,
-                            style: AppTypography.headlineMedium.copyWith(
-                              color: AppColors.midnightBlue,
-                              height: 1.2,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
+                              // Titre
+                              Text(
+                                step.title,
+                                textAlign: TextAlign.center,
+                                style: AppTypography.headlineMedium.copyWith(
+                                  color: AppColors.midnightBlue,
+                                  height: 1.2,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
 
-                          // Sous-titre
-                          Text(
-                            step.subtitle,
-                            textAlign: TextAlign.center,
-                            style: AppTypography.bodyMedium.copyWith(
-                              color: AppColors.grey500,
-                              height: 1.6,
-                            ),
-                          ),
-                        ],
+                              // Sous-titre
+                              Text(
+                                step.subtitle,
+                                textAlign: TextAlign.center,
+                                style: AppTypography.bodyMedium.copyWith(
+                                  color: AppColors.grey500,
+                                  height: 1.6,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     );
                   },

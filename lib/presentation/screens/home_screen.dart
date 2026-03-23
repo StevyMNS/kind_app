@@ -70,7 +70,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
             error: error.toString(),
             onRetry: () => ref.read(authControllerProvider.notifier).refresh(),
           ),
-          data: (_) => _buildContent(context),
+          data: (_) => SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: _buildContent(context),
+          ),
         ),
       ),
     );
@@ -124,7 +127,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               ),
             ),
 
-            const Spacer(),
+            const SizedBox(height: 48),
 
             // Bouton principal CTA
             KindButton(

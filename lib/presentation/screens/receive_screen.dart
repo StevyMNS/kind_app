@@ -138,38 +138,40 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
   }
 
   Widget _buildInitialState() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          Icons.mail_outline_rounded,
-          size: 80,
-          color: AppColors.gold.withValues(alpha: 0.5),
-        ),
-        const SizedBox(height: 24),
-        Text(
-          'Prêt à recevoir\nun message bienveillant ?',
-          style: AppTypography.headlineMedium.copyWith(
-            color: Theme.of(context).colorScheme.primary,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.mail_outline_rounded,
+            size: 80,
+            color: AppColors.gold.withValues(alpha: 0.5),
           ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 12),
-        Text(
-          'Quelqu\'un, quelque part, a écrit ces mots pour vous.',
-          style: AppTypography.bodyMedium.copyWith(
-            color: AppColors.grey500,
-            fontStyle: FontStyle.italic,
+          const SizedBox(height: 24),
+          Text(
+            'Prêt à recevoir\nun message bienveillant ?',
+            style: AppTypography.headlineMedium.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 48),
-        KindButton(
-          label: 'Révéler le message',
-          icon: Icons.auto_awesome,
-          onPressed: _receiveMessage,
-        ),
-      ],
+          const SizedBox(height: 12),
+          Text(
+            'Quelqu\'un, quelque part, a écrit ces mots pour vous.',
+            style: AppTypography.bodyMedium.copyWith(
+              color: AppColors.grey500,
+              fontStyle: FontStyle.italic,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 48),
+          KindButton(
+            label: 'Révéler le message',
+            icon: Icons.auto_awesome,
+            onPressed: _receiveMessage,
+          ),
+        ],
+      ),
     );
   }
 
@@ -178,61 +180,63 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
       position: _slideAnimation,
       child: FadeTransition(
         opacity: _fadeAnimation,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(32),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Theme.of(context).cardTheme.color ?? AppColors.white,
-                    AppColors.mist.withValues(alpha: 0.5),
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(32),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Theme.of(context).cardTheme.color ?? AppColors.white,
+                      AppColors.mist.withValues(alpha: 0.5),
+                    ],
+                  ),
+                  borderRadius: AppRadius.largeRadius,
+                  boxShadow: AppShadows.medium,
                 ),
-                borderRadius: AppRadius.largeRadius,
-                boxShadow: AppShadows.medium,
-              ),
-              child: Column(
-                children: [
-                  const Icon(
-                    Icons.format_quote_rounded,
-                    size: 32,
-                    color: AppColors.gold,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    content,
-                    style: AppTypography.bodyLarge.copyWith(
-                      fontSize: 18,
-                      height: 1.8,
-                      fontStyle: FontStyle.italic,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    '— Un inconnu bienveillant',
-                    style: AppTypography.bodySmall.copyWith(
+                child: Column(
+                  children: [
+                    const Icon(
+                      Icons.format_quote_rounded,
+                      size: 32,
                       color: AppColors.gold,
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 16),
+                    Text(
+                      content,
+                      style: AppTypography.bodyLarge.copyWith(
+                        fontSize: 18,
+                        height: 1.8,
+                        fontStyle: FontStyle.italic,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      '— Un inconnu bienveillant',
+                      style: AppTypography.bodySmall.copyWith(
+                        color: AppColors.gold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 32),
-            KindButton(
-              label: 'Confier le mien maintenant',
-              icon: Icons.edit_rounded,
-              onPressed: () {
-                ref.read(receiveMessageControllerProvider.notifier).reset();
-                context.go('/write');
-              },
-            ),
-          ],
+              const SizedBox(height: 32),
+              KindButton(
+                label: 'Confier le mien maintenant',
+                icon: Icons.edit_rounded,
+                onPressed: () {
+                  ref.read(receiveMessageControllerProvider.notifier).reset();
+                  context.go('/write');
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
