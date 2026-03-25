@@ -20,11 +20,20 @@ class MessageRemoteDatasource {
   }
 
   /// Envoie un message.
-  Future<MessageModel> sendMessage(String content) async {
+  Future<MessageModel> sendMessage(
+    String content, {
+    String? countryCode,
+    String? countryEmoji,
+  }) async {
     try {
       final response = await _client
           .from(AppConstants.messagesTable)
-          .insert({'sender_id': _currentUserId, 'content': content})
+          .insert({
+            'sender_id': _currentUserId,
+            'content': content,
+            'sender_country_code': countryCode,
+            'sender_country_emoji': countryEmoji,
+          })
           .select()
           .single();
 

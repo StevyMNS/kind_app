@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -20,15 +21,15 @@ class HistoryScreen extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text('Historique'),
+          title: Text('history.title'.tr()),
           bottom: TabBar(
             labelColor: AppColors.gold,
             unselectedLabelColor: AppColors.grey500,
             indicatorColor: AppColors.gold,
             labelStyle: AppTypography.labelLarge,
-            tabs: const [
-              Tab(text: 'Envoyés'),
-              Tab(text: 'Reçus'),
+            tabs: [
+              Tab(text: 'history.tab_sent'.tr()),
+              Tab(text: 'history.tab_received'.tr()),
             ],
           ),
         ),
@@ -53,8 +54,8 @@ class _SentTab extends ConsumerWidget {
       ),
       data: (state) {
         if (state.sentMessages.isEmpty) {
-          return const EmptyState(
-            message: 'Vous n\'avez pas encore envoyé de message.',
+          return EmptyState(
+            message: 'history.empty_sent'.tr(),
             icon: Icons.send_rounded,
           );
         }
@@ -112,8 +113,8 @@ class _ReceivedTab extends ConsumerWidget {
       ),
       data: (state) {
         if (state.receivedMessages.isEmpty) {
-          return const EmptyState(
-            message: 'Vous n\'avez pas encore reçu de message.',
+          return EmptyState(
+            message: 'history.empty_received'.tr(),
             icon: Icons.mail_rounded,
           );
         }
@@ -187,12 +188,27 @@ class _MessageTile extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                isSent ? 'Envoyé' : 'Reçu',
+                isSent
+                    ? 'history.status_sent'.tr()
+                    : 'history.status_received'.tr(),
                 style: AppTypography.labelSmall.copyWith(color: AppColors.gold),
               ),
               const Spacer(),
+              if (!isSent && message.senderCountryEmoji != null) ...[
+                Text(message.senderCountryEmoji!,
+                    style: const TextStyle(fontSize: 12)),
+                const SizedBox(width: 4),
+              ],
+              if (!isSent && message.senderCountryCode != null) ...[
+                Text(
+                  message.senderCountryCode!,
+                  style:
+                      AppTypography.labelSmall.copyWith(color: AppColors.grey500),
+                ),
+                const SizedBox(width: 8),
+              ],
               Text(
-                dateFormat.format(message.createdAt),
+                dateFormat.format(message.createdAt.toLocal()),
                 style: AppTypography.labelSmall.copyWith(
                   color: AppColors.grey500,
                 ),

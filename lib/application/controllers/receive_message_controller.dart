@@ -1,10 +1,12 @@
 import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kind_app/application/providers/usecase_providers.dart';
 import 'package:kind_app/core/services/daily_limit_service.dart';
 import 'package:kind_app/core/services/stats_service.dart';
 import 'package:kind_app/core/utils/logger.dart';
 import 'package:kind_app/domain/entities/message_entity.dart';
+import 'package:translator/translator.dart';
 
 /// État pour la réception de message.
 /// null = pas encore de message reçu.
@@ -19,7 +21,7 @@ class ReceiveMessageController extends AsyncNotifier<MessageEntity?> {
   FutureOr<MessageEntity?> build() => null;
 
   /// Reçoit un message aléatoire d'un inconnu.
-  Future<void> receiveMessage() async {
+  Future<void> receiveMessage({String? targetLanguageCode}) async {
     state = const AsyncValue.loading();
 
     // 1. Vérifier la limite quotidienne
@@ -38,6 +40,26 @@ class ReceiveMessageController extends AsyncNotifier<MessageEntity?> {
       final message = await useCase();
       if (message != null) {
         AppLogger.info('Message reçu: ${message.id}', 'RECEIVE');
+        if (targetLanguageCode != null) {
+          try {
+            final translator = GoogleTranslator();
+            final translation = await translator.translate(
+              message.content,
+              to: targetLanguageCode,
+            );
+            return MessageEntity(
+              id: message.id,
+              senderId: message.senderId,
+              content: translation.text,
+              senderCountryCode: message.senderCountryCode,
+              senderCountryEmoji: message.senderCountryEmoji,
+              createdAt: message.createdAt,
+            );
+          } catch (e, st) {
+            AppLogger.error('Translation failed', e, st);
+            return message;
+          }
+        }
       } else {
         AppLogger.info('Aucun message disponible', 'RECEIVE');
       }

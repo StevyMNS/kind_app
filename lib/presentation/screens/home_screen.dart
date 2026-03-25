@@ -1,10 +1,9 @@
 import 'dart:math';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kind_app/application/controllers/auth_controller.dart';
-import 'package:kind_app/core/constants/app_constants.dart';
 import 'package:kind_app/core/theme/app_colors.dart';
 import 'package:kind_app/core/theme/app_radius.dart';
 import 'package:kind_app/core/theme/app_shadows.dart';
@@ -28,15 +27,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   @override
   void initState() {
     super.initState();
-    _phrase = AppConstants.contemplativePhrases[
-        Random().nextInt(AppConstants.contemplativePhrases.length)];
+    final index = Random().nextInt(6);
+    _phrase = 'home.contemplative_phrases.$index'.tr();
 
     _animController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1000),
     );
-    _fadeAnimation =
-        CurvedAnimation(parent: _animController, curve: Curves.easeIn);
+    _fadeAnimation = CurvedAnimation(
+      parent: _animController,
+      curve: Curves.easeIn,
+    );
     _animController.forward();
   }
 
@@ -52,12 +53,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('One Kind Message'),
+        title: Text('app_name'.tr()),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings_rounded),
             onPressed: () => context.push('/settings'),
-            tooltip: 'Réglages',
+            tooltip: 'settings.title'.tr(),
           ),
         ],
       ),
@@ -131,7 +132,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
             // Bouton principal CTA
             KindButton(
-              label: 'Écrire mon message du jour',
+              label: 'home.write_message_cta'.tr(),
               icon: Icons.edit_rounded,
               onPressed: () => context.go('/write'),
             ),
@@ -140,7 +141,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
             Center(
               child: Text(
-                'Reviens demain pour un nouveau message',
+                'home.come_back_tomorrow'.tr(),
                 style: AppTypography.bodySmall.copyWith(
                   color: AppColors.grey500,
                   fontStyle: FontStyle.italic,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kind_app/core/theme/app_colors.dart';
@@ -7,10 +8,7 @@ import 'package:kind_app/core/theme/app_typography.dart';
 class ScaffoldWithBottomNav extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
 
-  const ScaffoldWithBottomNav({
-    super.key,
-    required this.navigationShell,
-  });
+  const ScaffoldWithBottomNav({super.key, required this.navigationShell});
 
   void _onTap(int index) {
     navigationShell.goBranch(
@@ -45,25 +43,25 @@ class ScaffoldWithBottomNav extends StatelessWidget {
               children: [
                 _NavItem(
                   icon: Icons.home_rounded,
-                  label: 'Accueil',
+                  label: 'nav.home'.tr(),
                   isActive: navigationShell.currentIndex == 0,
                   onTap: () => _onTap(0),
                 ),
                 _NavItem(
                   icon: Icons.edit_rounded,
-                  label: 'Écrire',
+                  label: 'nav.write'.tr(),
                   isActive: navigationShell.currentIndex == 1,
                   onTap: () => _onTap(1),
                 ),
                 _NavItem(
                   icon: Icons.favorite_rounded,
-                  label: 'Recevoir',
+                  label: 'nav.receive'.tr(),
                   isActive: navigationShell.currentIndex == 2,
                   onTap: () => _onTap(2),
                 ),
                 _NavItem(
                   icon: Icons.book_rounded,
-                  label: 'Historique',
+                  label: 'nav.history'.tr(),
                   isActive: navigationShell.currentIndex == 3,
                   onTap: () => _onTap(3),
                 ),
@@ -120,8 +118,7 @@ class _NavItem extends StatelessWidget {
               label,
               style: AppTypography.labelSmall.copyWith(
                 color: isActive ? AppColors.gold : AppColors.grey500,
-                fontWeight:
-                    isActive ? FontWeight.w600 : FontWeight.w400,
+                fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
                 fontSize: 10,
               ),
             ),

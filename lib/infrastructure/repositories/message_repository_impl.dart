@@ -11,9 +11,17 @@ class MessageRepositoryImpl implements MessageRepository {
   const MessageRepositoryImpl(this._datasource);
 
   @override
-  Future<MessageEntity> sendMessage(String content) async {
+  Future<MessageEntity> sendMessage(
+    String content, {
+    String? countryCode,
+    String? countryEmoji,
+  }) async {
     try {
-      final model = await _datasource.sendMessage(content);
+      final model = await _datasource.sendMessage(
+        content,
+        countryCode: countryCode,
+        countryEmoji: countryEmoji,
+      );
       return model.toEntity();
     } on ServerException {
       rethrow;

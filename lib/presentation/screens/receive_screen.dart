@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +7,7 @@ import 'package:kind_app/core/theme/app_colors.dart';
 import 'package:kind_app/core/theme/app_radius.dart';
 import 'package:kind_app/core/theme/app_shadows.dart';
 import 'package:kind_app/core/theme/app_typography.dart';
+import 'package:kind_app/domain/entities/message_entity.dart';
 import 'package:kind_app/presentation/widgets/empty_state.dart';
 import 'package:kind_app/presentation/widgets/kind_button.dart';
 
@@ -55,7 +57,10 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
   void _receiveMessage() {
     if (!_hasTriggered) {
       _hasTriggered = true;
-      ref.read(receiveMessageControllerProvider.notifier).receiveMessage();
+      final languageCode = context.locale.languageCode;
+      ref
+          .read(receiveMessageControllerProvider.notifier)
+          .receiveMessage(targetLanguageCode: languageCode);
     }
   }
 
@@ -73,19 +78,19 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Message reçu'),
+        title: Text('receive.title'.tr()),
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: receiveState.when(
-            loading: () => const Center(
+            loading: () => Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(color: AppColors.gold),
-                  SizedBox(height: 24),
-                  Text('Recherche d\'un message pour vous...'),
+                  const CircularProgressIndicator(color: AppColors.gold),
+                  const SizedBox(height: 24),
+                  Text('receive.loading'.tr()),
                 ],
               ),
             ),
@@ -106,7 +111,7 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
                   ),
                   const SizedBox(height: 24),
                   KindButton(
-                    label: 'Réessayer',
+                    label: 'receive.btn_retry'.tr(),
                     onPressed: () {
                       _hasTriggered = false;
                       _receiveMessage();
@@ -122,14 +127,13 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
               }
               // Aucun message disponible
               if (message == null && _hasTriggered) {
-                return const EmptyState(
-                  message:
-                      'Aucun message disponible pour l\'instant.\nRevenez un peu plus tard...',
+                return EmptyState(
+                  message: 'receive.empty'.tr(),
                   icon: Icons.hourglass_empty_rounded,
                 );
               }
               // Message reçu avec animation
-              return _buildMessageCard(message!.content);
+              return _buildMessageCard(message!);
             },
           ),
         ),
@@ -149,7 +153,7 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
           ),
           const SizedBox(height: 24),
           Text(
-            'Prêt à recevoir\nun message bienveillant ?',
+            'receive.initial_title'.tr(),
             style: AppTypography.headlineMedium.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -157,7 +161,7 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
           ),
           const SizedBox(height: 12),
           Text(
-            'Quelqu\'un, quelque part, a écrit ces mots pour vous.',
+            'receive.initial_subtitle'.tr(),
             style: AppTypography.bodyMedium.copyWith(
               color: AppColors.grey500,
               fontStyle: FontStyle.italic,
@@ -166,7 +170,7 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
           ),
           const SizedBox(height: 48),
           KindButton(
-            label: 'Révéler le message',
+            label: 'receive.btn_reveal'.tr(),
             icon: Icons.auto_awesome,
             onPressed: _receiveMessage,
           ),
@@ -175,7 +179,7 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
     );
   }
 
-  Widget _buildMessageCard(String content) {
+  Widget _buildMessageCard(MessageEntity message) {
     return SlideTransition(
       position: _slideAnimation,
       child: FadeTransition(
@@ -208,7 +212,7 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      content,
+                      message.content,
                       style: AppTypography.bodyLarge.copyWith(
                         fontSize: 18,
                         height: 1.8,
@@ -217,18 +221,39 @@ class _ReceiveScreenState extends ConsumerState<ReceiveScreen>
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
-                    Text(
-                      '— Un inconnu bienveillant',
-                      style: AppTypography.bodySmall.copyWith(
-                        color: AppColors.gold,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (message.senderCountryEmoji != null) ...[
+                          Text(message.senderCountryEmoji!,
+                              style: const TextStyle(fontSize: 14)),
+                          const SizedBox(width: 8),
+                        ],
+                        Text(
+                          'receive.author_anonymous'.tr(),
+                          style: AppTypography.bodySmall.copyWith(
+                            color: AppColors.gold,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
                     ),
+                    if (message.senderCountryCode != null) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        message.senderCountryCode!,
+                        style: AppTypography.labelSmall.copyWith(
+                          color: AppColors.grey500,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
               const SizedBox(height: 32),
               KindButton(
-                label: 'Confier le mien maintenant',
+                label: 'receive.btn_write_mine'.tr(),
                 icon: Icons.edit_rounded,
                 onPressed: () {
                   ref.read(receiveMessageControllerProvider.notifier).reset();

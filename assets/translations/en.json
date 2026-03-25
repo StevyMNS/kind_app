@@ -1,0 +1,83 @@
+{
+  "app_name": "One Kind Message",
+  "home": {
+    "write_message_cta": "Write my daily message",
+    "come_back_tomorrow": "Come back tomorrow for a new message",
+    "daily_verse_title": "Daily Verse",
+    "contemplative_phrases": {
+      "0": "One word can change a day.",
+      "1": "Kindness travels in silence.",
+      "2": "Someone, somewhere, needs your words.",
+      "3": "Every message carries a light.",
+      "4": "Offer an invisible smile to the world.",
+      "5": "Your gentleness can touch a heart."
+    }
+  },
+  "write": {
+    "title": "Write a message",
+    "headline": "Share a word of kindness",
+    "subtitle": "Your message will be sent anonymously to someone in the world.",
+    "hint": "An encouragement, a prayer, a smile...",
+    "btn_send": "Send with love",
+    "success_title": "Message sent",
+    "success_subtitle": "Your kindness is now traveling to someone..."
+  },
+  "settings": {
+    "title": "MY JOURNEY",
+    "streak_title": "Active Days",
+    "streak_subtitle": "Continuous prayer streak",
+    "about": "About",
+    "concept_title": "Concept",
+    "concept_subtitle": "Exchange kind messages anonymously.",
+    "version": "Version {}",
+    "privacy_policy": "Privacy Policy",
+    "delete_account": "Delete account",
+    "anonymous_badge": "Anonymous",
+    "dialog_delete_title": "Delete account?",
+    "dialog_delete_content": "This action is irreversible. All your local data and anonymous messages will be dissociated.",
+    "btn_cancel": "Cancel",
+    "btn_delete": "Delete",
+    "lang_title": "Language",
+    "timezone_title": "Timezone",
+    "reminders_title": "Daily reminders",
+    "dark_mode_title": "Dark mode"
+  },
+  "onboarding": {
+    "step1_title": "One message can\nchange a day.",
+    "step1_subtitle": "Receive an anonymous prayer or a verse\nto brighten your daily life.",
+    "step2_title": "Send some\nlight.",
+    "step2_subtitle": "Share a kind word with a stranger.\nAnonymously. Without judgment.",
+    "step3_title": "Anonymous.\nSimple.\nPeaceful.",
+    "step3_subtitle": "One message per day. A silent\nprayer. Nothing more.",
+    "btn_skip": "Skip",
+    "btn_next": "Next →",
+    "btn_start": "Start",
+    "login_link": "Already have an account? Log in"
+  },
+  "receive": {
+    "title": "Message received",
+    "loading": "Looking for a message for you...",
+    "btn_retry": "Retry",
+    "empty": "No message available at the moment.\nCome back a little later...",
+    "initial_title": "Ready to receive\na kind message?",
+    "initial_subtitle": "Someone, somewhere, wrote these words for you.",
+    "btn_reveal": "Reveal the message",
+    "author_anonymous": "— A kind stranger",
+    "btn_write_mine": "Send mine now"
+  },
+  "nav": {
+    "home": "Home",
+    "write": "Write",
+    "receive": "Receive",
+    "history": "History"
+  },
+  "history": {
+    "title": "History",
+    "tab_sent": "Sent",
+    "tab_received": "Received",
+    "empty_sent": "You haven't sent any messages yet.",
+    "empty_received": "You haven't received any messages yet.",
+    "status_sent": "Sent",
+    "status_received": "Received"
+  }
+}

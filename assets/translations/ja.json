@@ -1,0 +1,83 @@
+{
+  "app_name": "One Kind Message",
+  "home": {
+    "write_message_cta": "今日のメッセージを書く",
+    "come_back_tomorrow": "新しいメッセージを受け取るために明日また来てください",
+    "daily_verse_title": "今日の聖句",
+    "contemplative_phrases": {
+      "0": "一言が一日を変えることができます。",
+      "1": "優しさは静かに旅をします。",
+      "2": "誰かが、どこかで、あなたの言葉を必要としています。",
+      "3": "すべてのメッセージが光を運んでいます。",
+      "4": "世界に見えない笑顔を贈りましょう。",
+      "5": "あなたの優しさが心に触れるかもしれません。"
+    }
+  },
+  "write": {
+    "title": "メッセージを書く",
+    "headline": "優しい言葉を共有しましょう",
+    "subtitle": "あなたのメッセージは世界の誰かに匿名で送信されます。",
+    "hint": "励まし、祈り、笑顔...",
+    "btn_send": "愛を込めて送る",
+    "success_title": "メッセージを送信しました",
+    "success_subtitle": "あなたの優しさが今、誰かに向かって旅立っています..."
+  },
+  "settings": {
+    "title": "私の旅",
+    "streak_title": "アクティブな日数",
+    "streak_subtitle": "継続的な祈りの連続",
+    "about": "アプリについて",
+    "concept_title": "コンセプト",
+    "concept_subtitle": "優しいメッセージを匿名で交換します。",
+    "version": "バージョン {}",
+    "privacy_policy": "プライバシーポリシー",
+    "delete_account": "アカウントを削除",
+    "anonymous_badge": "匿名",
+    "dialog_delete_title": "アカウントを削除しますか？",
+    "dialog_delete_content": "この操作は元に戻せません。すべてのローカルデータと匿名メッセージは切り離されます。",
+    "btn_cancel": "キャンセル",
+    "btn_delete": "削除",
+    "lang_title": "言語",
+    "timezone_title": "タイムゾーン",
+    "reminders_title": "毎日のリマインダー",
+    "dark_mode_title": "ダークモード"
+  },
+  "onboarding": {
+    "step1_title": "ひとつのメッセージが\n一日を変えることがあります。",
+    "step1_subtitle": "日常を明るくするための\n匿名の祈りや聖句を受け取りましょう。",
+    "step2_title": "光を\n送りましょう。",
+    "step2_subtitle": "見知らぬ人と優しい言葉を共有しましょう。\n匿名で。偏見なしに。",
+    "step3_title": "匿名。\nシンプル。\n平和。",
+    "step3_subtitle": "一日にひとつのメッセージ。静かな\n祈り。それだけです。",
+    "btn_skip": "スキップ",
+    "btn_next": "次へ →",
+    "btn_start": "開始する",
+    "login_link": "すでにアカウントをお持ちですか？ ログイン"
+  },
+  "receive": {
+    "title": "メッセージを受信しました",
+    "loading": "あなたのためのメッセージを探しています...",
+    "btn_retry": "再試行",
+    "empty": "現在利用できるメッセージはありません。\n後でもう一度お越しください...",
+    "initial_title": "優しいメッセージを\n受け取る準備はできましたか？",
+    "initial_subtitle": "誰かが、どこかで、あなたのためにこれらの言葉を書きました。",
+    "btn_reveal": "メッセージを明らかにする",
+    "author_anonymous": "— 優しい見知らぬ人",
+    "btn_write_mine": "今すぐ送る"
+  },
+  "nav": {
+    "home": "ホーム",
+    "write": "書く",
+    "receive": "受け取る",
+    "history": "履歴"
+  },
+  "history": {
+    "title": "履歴",
+    "tab_sent": "送信済み",
+    "tab_received": "受信済み",
+    "empty_sent": "まだメッセージを送信していません。",
+    "empty_received": "まだメッセージを受信していません。",
+    "status_sent": "送信済み",
+    "status_received": "受信済み"
+  }
+}

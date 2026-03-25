@@ -1,0 +1,83 @@
+{
+  "app_name": "One Kind Message",
+  "home": {
+    "write_message_cta": "Écrire mon message du jour",
+    "come_back_tomorrow": "Reviens demain pour un nouveau message",
+    "daily_verse_title": "Verset du jour",
+    "contemplative_phrases": {
+      "0": "Un mot peut changer une journée.",
+      "1": "La bienveillance voyage en silence.",
+      "2": "Quelqu'un, quelque part, a besoin de vos mots.",
+      "3": "Chaque message porte une lumière.",
+      "4": "Offrez un sourire invisible au monde.",
+      "5": "Votre douceur peut toucher un cœur."
+    }
+  },
+  "write": {
+    "title": "Écrire un message",
+    "headline": "Partagez un mot de bienveillance",
+    "subtitle": "Votre message sera envoyé anonymement à quelqu'un dans le monde.",
+    "hint": "Un encouragement, une prière, un sourire...",
+    "btn_send": "Envoyer avec amour",
+    "success_title": "Message envoyé",
+    "success_subtitle": "Votre bienveillance voyage maintenant vers quelqu'un..."
+  },
+  "settings": {
+    "title": "MON PARCOURS",
+    "streak_title": "Jours Actifs",
+    "streak_subtitle": "Série de prières continue",
+    "about": "À propos",
+    "concept_title": "Concept",
+    "concept_subtitle": "Échangez des messages bienveillants anonymement.",
+    "version": "Version {}",
+    "privacy_policy": "Politique de confidentialité",
+    "delete_account": "Supprimer le compte",
+    "anonymous_badge": "Anonyme",
+    "dialog_delete_title": "Supprimer le compte ?",
+    "dialog_delete_content": "Cette action est irréversible. Toutes vos données locales et messages anonymes seront dissociés.",
+    "btn_cancel": "Annuler",
+    "btn_delete": "Supprimer",
+    "lang_title": "Langue",
+    "timezone_title": "Fuseau horaire",
+    "reminders_title": "Rappels quotidiens",
+    "dark_mode_title": "Mode sombre"
+  },
+  "onboarding": {
+    "step1_title": "Un message peut\nchanger une journée.",
+    "step1_subtitle": "Recevez une prière anonyme ou un verset\npour illuminer votre quotidien.",
+    "step2_title": "Envoyez de la\nlumière.",
+    "step2_subtitle": "Partagez un mot bienveillant avec un inconnu.\nAnonymement. Sans jugement.",
+    "step3_title": "Anonyme.\nSimple.\nPaisible.",
+    "step3_subtitle": "Un message par jour. Une prière\nsilencieuse. Rien de plus.",
+    "btn_skip": "Passer",
+    "btn_next": "Suivant →",
+    "btn_start": "Commencer",
+    "login_link": "Déjà un compte ? Se connecter"
+  },
+  "receive": {
+    "title": "Message reçu",
+    "loading": "Recherche d'un message pour vous...",
+    "btn_retry": "Réessayer",
+    "empty": "Aucun message disponible pour l'instant.\nRevenez un peu plus tard...",
+    "initial_title": "Prêt à recevoir\nun message bienveillant ?",
+    "initial_subtitle": "Quelqu'un, quelque part, a écrit ces mots pour vous.",
+    "btn_reveal": "Révéler le message",
+    "author_anonymous": "— Un inconnu bienveillant",
+    "btn_write_mine": "Confier le mien maintenant"
+  },
+  "nav": {
+    "home": "Accueil",
+    "write": "Écrire",
+    "receive": "Recevoir",
+    "history": "Historique"
+  },
+  "history": {
+    "title": "Historique",
+    "tab_sent": "Envoyés",
+    "tab_received": "Reçus",
+    "empty_sent": "Vous n'avez pas encore envoyé de message.",
+    "empty_received": "Vous n'avez pas encore reçu de message.",
+    "status_sent": "Envoyé",
+    "status_received": "Reçu"
+  }
+}

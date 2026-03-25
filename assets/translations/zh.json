@@ -1,0 +1,83 @@
+{
+  "app_name": "One Kind Message",
+  "home": {
+    "write_message_cta": "写下我今天的留言",
+    "come_back_tomorrow": "明天再来获取新消息",
+    "daily_verse_title": "每日金句",
+    "contemplative_phrases": {
+      "0": "一句话可以改变一天。",
+      "1": "善意在沉默中传递。",
+      "2": "在某个地方，有人需要你的话语。",
+      "3": "每条信息都带着一束光。",
+      "4": "给世界一个看不见的微笑。",
+      "5": "你的温柔可以触动一颗心。"
+    }
+  },
+  "write": {
+    "title": "写一条信息",
+    "headline": "分享一句善言",
+    "subtitle": "您的信息将匿名发送给世界上的某个角落。",
+    "hint": "一句鼓励、一段祈祷、一个微笑...",
+    "btn_send": "带着爱发送",
+    "success_title": "信息已发送",
+    "success_subtitle": "您的善意此刻正在飞向某个人..."
+  },
+  "settings": {
+    "title": "我的旅程",
+    "streak_title": "活跃天数",
+    "streak_subtitle": "持续的祈祷天数",
+    "about": "关于",
+    "concept_title": "概念",
+    "concept_subtitle": "匿名交换善意的信息。",
+    "version": "版本 {}",
+    "privacy_policy": "隐私政策",
+    "delete_account": "删除账户",
+    "anonymous_badge": "匿名",
+    "dialog_delete_title": "删除账户？",
+    "dialog_delete_content": "此操作无法撤销。您的所有本地数据和匿名信息将被解除关联。",
+    "btn_cancel": "取消",
+    "btn_delete": "删除",
+    "lang_title": "语言",
+    "timezone_title": "时区",
+    "reminders_title": "每日提醒",
+    "dark_mode_title": "深色模式"
+  },
+  "onboarding": {
+    "step1_title": "一条信息可以\n改变一天。",
+    "step1_subtitle": "接收匿名的祈祷或经文\n照亮您的日常生活。",
+    "step2_title": "传递一些\n光芒。",
+    "step2_subtitle": "与陌生人分享一句善言。\n匿名的。不带评判。",
+    "step3_title": "匿名。\n简单。\n和平。",
+    "step3_subtitle": "每天一条信息。一次无声的\n祈祷。仅此而已。",
+    "btn_skip": "跳过",
+    "btn_next": "下一步 →",
+    "btn_start": "开始",
+    "login_link": "已有账户？登录"
+  },
+  "receive": {
+    "title": "收到消息",
+    "loading": "正在为您寻找消息...",
+    "btn_retry": "重试",
+    "empty": "目前没有可用的消息。\n请稍后再来...",
+    "initial_title": "准备好接收\n善意的消息了吗？",
+    "initial_subtitle": "有人在某个地方为您写了这些话。",
+    "btn_reveal": "揭晓消息",
+    "author_anonymous": "— 一位善良的陌生人",
+    "btn_write_mine": "现在发送我的消息"
+  },
+  "nav": {
+    "home": "主页",
+    "write": "写",
+    "receive": "接收",
+    "history": "历史"
+  },
+  "history": {
+    "title": "历史",
+    "tab_sent": "已发送",
+    "tab_received": "已接收",
+    "empty_sent": "您尚未发送任何消息。",
+    "empty_received": "您尚未收到任何消息。",
+    "status_sent": "已发送",
+    "status_received": "已接收"
+  }
+}

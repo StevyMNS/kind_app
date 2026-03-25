@@ -45,9 +45,8 @@ final appRouter = GoRouter(
             GoRoute(
               path: '/home',
               name: 'home',
-              pageBuilder: (context, state) => const NoTransitionPage(
-                child: HomeScreen(),
-              ),
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: HomeScreen()),
             ),
           ],
         ),
@@ -58,9 +57,8 @@ final appRouter = GoRouter(
             GoRoute(
               path: '/write',
               name: 'write',
-              pageBuilder: (context, state) => const NoTransitionPage(
-                child: WriteScreen(),
-              ),
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: WriteScreen()),
             ),
           ],
         ),
@@ -71,9 +69,8 @@ final appRouter = GoRouter(
             GoRoute(
               path: '/receive',
               name: 'receive',
-              pageBuilder: (context, state) => const NoTransitionPage(
-                child: ReceiveScreen(),
-              ),
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: ReceiveScreen()),
             ),
           ],
         ),
@@ -84,9 +81,8 @@ final appRouter = GoRouter(
             GoRoute(
               path: '/history',
               name: 'history',
-              pageBuilder: (context, state) => const NoTransitionPage(
-                child: HistoryScreen(),
-              ),
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: HistoryScreen()),
             ),
           ],
         ),
@@ -103,9 +99,10 @@ final appRouter = GoRouter(
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(1.0, 0.0);
           const end = Offset.zero;
-          final tween = Tween(begin: begin, end: end).chain(
-            CurveTween(curve: Curves.easeOutCubic),
-          );
+          final tween = Tween(
+            begin: begin,
+            end: end,
+          ).chain(CurveTween(curve: Curves.easeOutCubic));
           return SlideTransition(
             position: animation.drive(tween),
             child: child,

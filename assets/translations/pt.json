@@ -1,0 +1,83 @@
+{
+  "app_name": "One Kind Message",
+  "home": {
+    "write_message_cta": "Escrever minha mensagem do dia",
+    "come_back_tomorrow": "Volte amanhã para uma nova mensagem",
+    "daily_verse_title": "Versículo do dia",
+    "contemplative_phrases": {
+      "0": "Uma palavra pode mudar um dia.",
+      "1": "A bondade viaja em silêncio.",
+      "2": "Alguém, em algum lugar, precisa das suas palavras.",
+      "3": "Cada mensagem carrega uma luz.",
+      "4": "Ofereça um sorriso invisível ao mundo.",
+      "5": "Sua doçura pode tocar um coração."
+    }
+  },
+  "write": {
+    "title": "Escrever uma mensagem",
+    "headline": "Compartilhe uma palavra de bondade",
+    "subtitle": "Sua mensagem será enviada anonimamente para alguém no mundo.",
+    "hint": "Um incentivo, uma oração, um sorriso...",
+    "btn_send": "Enviar com amor",
+    "success_title": "Mensagem enviada",
+    "success_subtitle": "Sua bondade agora está viajando para alguém..."
+  },
+  "settings": {
+    "title": "MINHA JORNADA",
+    "streak_title": "Dias Ativos",
+    "streak_subtitle": "Série contínua de orações",
+    "about": "Sobre",
+    "concept_title": "Conceito",
+    "concept_subtitle": "Troque mensagens gentis anonimamente.",
+    "version": "Versão {}",
+    "privacy_policy": "Política de Privacidade",
+    "delete_account": "Excluir conta",
+    "anonymous_badge": "Anônimo",
+    "dialog_delete_title": "Excluir conta?",
+    "dialog_delete_content": "Esta ação é irreversível. Todos os seus dados locais e mensagens anônimas serão dissociados.",
+    "btn_cancel": "Cancelar",
+    "btn_delete": "Excluir",
+    "lang_title": "Idioma",
+    "timezone_title": "Fuso horário",
+    "reminders_title": "Lembretes diários",
+    "dark_mode_title": "Modo escuro"
+  },
+  "onboarding": {
+    "step1_title": "Uma mensagem pode\nmudar um dia.",
+    "step1_subtitle": "Receba uma oração anônima ou um versículo\npara iluminar o seu dia a dia.",
+    "step2_title": "Envie alguma\nluz.",
+    "step2_subtitle": "Compartilhe uma palavra gentil com um estranho.\nAnonimamente. Sem julgamento.",
+    "step3_title": "Anônimo.\nSimples.\nPacífico.",
+    "step3_subtitle": "Uma mensagem por dia. Uma oração\nsilenciosa. Nada mais.",
+    "btn_skip": "Pular",
+    "btn_next": "Próximo →",
+    "btn_start": "Começar",
+    "login_link": "Já tem uma conta? Entrar"
+  },
+  "receive": {
+    "title": "Mensagem recebida",
+    "loading": "Procurando uma mensagem para você...",
+    "btn_retry": "Tentar novamente",
+    "empty": "Nenhuma mensagem disponível no momento.\nVolte um pouco mais tarde...",
+    "initial_title": "Pronto para receber\numa mensagem gentil?",
+    "initial_subtitle": "Alguém, em algum lugar, escreveu estas palavras para você.",
+    "btn_reveal": "Revelar a mensagem",
+    "author_anonymous": "— Um estranho gentil",
+    "btn_write_mine": "Enviar a minha agora"
+  },
+  "nav": {
+    "home": "Início",
+    "write": "Escrever",
+    "receive": "Receber",
+    "history": "Histórico"
+  },
+  "history": {
+    "title": "Histórico",
+    "tab_sent": "Enviados",
+    "tab_received": "Recebidos",
+    "empty_sent": "Você ainda não enviou nenhuma mensagem.",
+    "empty_received": "Você ainda não recebeu nenhuma mensagem.",
+    "status_sent": "Enviado",
+    "status_received": "Recebido"
+  }
+}

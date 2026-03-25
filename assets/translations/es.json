@@ -1,0 +1,83 @@
+{
+  "app_name": "One Kind Message",
+  "home": {
+    "write_message_cta": "Escribir mi mensaje del día",
+    "come_back_tomorrow": "Vuelve mañana para un nuevo mensaje",
+    "daily_verse_title": "Versículo del día",
+    "contemplative_phrases": {
+      "0": "Una palabra puede cambiar un día.",
+      "1": "La amabilidad viaja en silencio.",
+      "2": "Alguien, en algún lugar, necesita tus palabras.",
+      "3": "Cada mensaje lleva una luz.",
+      "4": "Ofrece una sonrisa invisible al mundo.",
+      "5": "Tu dulzura puede tocar un corazón."
+    }
+  },
+  "write": {
+    "title": "Escribir un mensaje",
+    "headline": "Comparte una palabra de bondad",
+    "subtitle": "Tu mensaje será enviado anónimamente a alguien en el mundo.",
+    "hint": "Un estímulo, una oración, una sonrisa...",
+    "btn_send": "Enviar con amor",
+    "success_title": "Mensaje enviado",
+    "success_subtitle": "Tu bondad ahora viaja hacia alguien..."
+  },
+  "settings": {
+    "title": "MI VIAJE",
+    "streak_title": "Días Activos",
+    "streak_subtitle": "Racha de oración continua",
+    "about": "Acerca de",
+    "concept_title": "Concepto",
+    "concept_subtitle": "Intercambia mensajes amables de forma anónima.",
+    "version": "Versión {}",
+    "privacy_policy": "Política de privacidad",
+    "delete_account": "Eliminar cuenta",
+    "anonymous_badge": "Anónimo",
+    "dialog_delete_title": "¿Eliminar cuenta?",
+    "dialog_delete_content": "Esta acción es irreversible. Todos tus datos locales y mensajes anónimos serán disociados.",
+    "btn_cancel": "Cancelar",
+    "btn_delete": "Eliminar",
+    "lang_title": "Idioma",
+    "timezone_title": "Zona horaria",
+    "reminders_title": "Recordatorios diarios",
+    "dark_mode_title": "Modo oscuro"
+  },
+  "onboarding": {
+    "step1_title": "Un mensaje puede\ncambiar un día.",
+    "step1_subtitle": "Recibe una oración anónima o un versículo\npara iluminar tu vida diaria.",
+    "step2_title": "Envía algo de\nluz.",
+    "step2_subtitle": "Comparte una palabra amable con un extraño.\nAnónimamente. Sin juicio.",
+    "step3_title": "Anónimo.\nSimple.\nPacífico.",
+    "step3_subtitle": "Un mensaje por día. Una oración silenciosa.\nNada más.",
+    "btn_skip": "Omitir",
+    "btn_next": "Siguiente →",
+    "btn_start": "Comenzar",
+    "login_link": "¿Ya tienes una cuenta? Iniciar sesión"
+  },
+  "receive": {
+    "title": "Mensaje recibido",
+    "loading": "Buscando un mensaje para ti...",
+    "btn_retry": "Reintentar",
+    "empty": "Ningún mensaje disponible por el momento.\nVuelve un poco más tarde...",
+    "initial_title": "¿Listo para recibir\nun mensaje amable?",
+    "initial_subtitle": "Alguien, en algún lugar, escribió estas palabras para ti.",
+    "btn_reveal": "Revelar el mensaje",
+    "author_anonymous": "— Un extraño amable",
+    "btn_write_mine": "Enviar el mío ahora"
+  },
+  "nav": {
+    "home": "Inicio",
+    "write": "Escribir",
+    "receive": "Recibir",
+    "history": "Historial"
+  },
+  "history": {
+    "title": "Historial",
+    "tab_sent": "Enviados",
+    "tab_received": "Recibidos",
+    "empty_sent": "Aún no has enviado ningún mensaje.",
+    "empty_received": "Aún no has recibido ningún mensaje.",
+    "status_sent": "Enviado",
+    "status_received": "Recibido"
+  }
+}

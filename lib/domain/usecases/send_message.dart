@@ -7,6 +7,14 @@ class SendMessage {
 
   const SendMessage(this._repository);
 
-  Future<MessageEntity> call(String content) =>
-      _repository.sendMessage(content);
+  Future<MessageEntity> call(
+    String content, {
+    String? countryCode,
+    String? countryEmoji,
+  }) =>
+      _repository.sendMessage(
+        content,
+        countryCode: countryCode,
+        countryEmoji: countryEmoji,
+      );
 }

@@ -20,7 +20,11 @@ class SendMessageController extends AsyncNotifier<MessageEntity?> {
   FutureOr<MessageEntity?> build() => null;
 
   /// Envoie un message après validation.
-  Future<bool> send(String content) async {
+  Future<bool> send(
+    String content, {
+    String? countryCode,
+    String? countryEmoji,
+  }) async {
     // Validation locale
     final validationError = Validators.validateMessage(content);
     if (validationError != null) {
@@ -42,7 +46,11 @@ class SendMessageController extends AsyncNotifier<MessageEntity?> {
 
     state = await AsyncValue.guard(() async {
       final useCase = ref.read(sendMessageUseCaseProvider);
-      final message = await useCase(content.trim());
+      final message = await useCase(
+        content.trim(),
+        countryCode: countryCode,
+        countryEmoji: countryEmoji,
+      );
 
       // Succès -> Marquer dans SharedPreferences + incrémenter le streak
       await limitService.markAsSentToday();

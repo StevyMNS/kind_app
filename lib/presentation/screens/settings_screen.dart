@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +26,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Widget build(BuildContext context) {
     final themeMode = ref.watch(themeModeProvider);
     final isDark = themeMode == ThemeMode.dark;
-    
+
     // Récupérer le streak depuis le service (synchrone car basé sur SharedPreferences injecté)
     final statsService = ref.watch(statsServiceProvider);
     final streak = statsService.getActiveDaysStreak();
@@ -36,7 +37,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           icon: const Icon(Icons.arrow_back_rounded),
           onPressed: () => context.pop(),
         ),
-        title: const Text('MON PARCOURS', style: TextStyle(fontSize: 14, letterSpacing: 1.2)),
+        title: Text(
+          'settings.title'.tr(),
+          style: const TextStyle(fontSize: 14, letterSpacing: 1.2),
+        ),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -45,7 +49,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           children: [
             // Section Jours Actifs (Streak)
             _buildStreakSection(streak),
-            
+
             const SizedBox(height: 48),
 
             // Section Préférences Minimales
@@ -54,20 +58,25 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             const SizedBox(height: 32),
 
             // Section À propos (conservée comme demandé)
-            const Text(
-              'À propos',
-              style: TextStyle(color: AppColors.grey500, fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.0),
+            Text(
+              'settings.about'.tr(),
+              style: const TextStyle(
+                color: AppColors.grey500,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.0,
+              ),
             ),
             const SizedBox(height: 8),
-            const _SettingsTile(
+            _SettingsTile(
               icon: Icons.favorite_rounded,
-              title: 'Concept',
-              subtitle: 'Échangez des messages bienveillants anonymement.',
+              title: 'settings.concept_title'.tr(),
+              subtitle: 'settings.concept_subtitle'.tr(),
             ),
-            const _SettingsTile(
+            _SettingsTile(
               icon: Icons.info_outline_rounded,
               title: AppConstants.appName,
-              subtitle: 'Version ${AppConstants.appVersion}',
+              subtitle: 'settings.version'.tr(args: [AppConstants.appVersion]),
             ),
 
             const SizedBox(height: 48),
@@ -77,18 +86,22 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               child: TextButton(
                 onPressed: () {},
                 child: Text(
-                  'Politique de confidentialité',
-                  style: AppTypography.bodySmall.copyWith(color: AppColors.grey500),
+                  'settings.privacy_policy'.tr(),
+                  style: AppTypography.bodySmall.copyWith(
+                    color: AppColors.grey500,
+                  ),
                 ),
               ),
             ),
-            
+
             Center(
               child: TextButton(
                 onPressed: () => _showDeleteDialog(context, ref),
                 child: Text(
-                  'Supprimer le compte',
-                  style: AppTypography.bodySmall.copyWith(color: AppColors.error),
+                  'settings.delete_account'.tr(),
+                  style: AppTypography.bodySmall.copyWith(
+                    color: AppColors.error,
+                  ),
                 ),
               ),
             ),
@@ -96,8 +109,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             const SizedBox(height: 24),
             Center(
               child: Text(
-                'Version ${AppConstants.appVersion} • Anonyme',
-                style: AppTypography.labelSmall.copyWith(color: AppColors.grey300),
+                '${'settings.version'.tr(args: [AppConstants.appVersion])} • ${'settings.anonymous_badge'.tr()}',
+                style: AppTypography.labelSmall.copyWith(
+                  color: AppColors.grey300,
+                ),
               ),
             ),
             const SizedBox(height: 32),
@@ -137,12 +152,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ],
         ),
         Text(
-          'Jours Actifs',
-          style: AppTypography.headlineSmall.copyWith(color: Theme.of(context).colorScheme.primary),
+          'settings.streak_title'.tr(),
+          style: AppTypography.headlineSmall.copyWith(
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
         const SizedBox(height: 4),
         Text(
-          'Série de prières continue',
+          'settings.streak_subtitle'.tr(),
           style: AppTypography.bodySmall.copyWith(color: AppColors.grey500),
         ),
       ],
@@ -150,19 +167,31 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   Widget _buildPreferencesSection(bool isDark) {
+    final languageCode = context.locale.languageCode;
+    final Map<String, String> langNames = {
+      'en': 'English',
+      'fr': 'Français',
+      'es': 'Español',
+      'pt': 'Português',
+      'ja': '日本語',
+      'zh': '中文',
+    };
+    final currentLangName = langNames[languageCode] ?? 'English';
+
     return Column(
       children: [
         _SettingsTile(
           icon: Icons.translate_rounded,
-          title: 'Langue',
+          title: 'settings.lang_title'.tr(),
           trailing: Text(
-            'Français',
+            currentLangName,
             style: AppTypography.bodySmall.copyWith(color: AppColors.grey500),
           ),
+          onTap: _showLanguageModal,
         ),
         _SettingsTile(
           icon: Icons.schedule_rounded,
-          title: 'Fuseau horaire',
+          title: 'settings.timezone_title'.tr(),
           trailing: Text(
             'Auto', // Simplifié en Auto (au lieu de Paris statique)
             style: AppTypography.bodySmall.copyWith(color: AppColors.grey500),
@@ -170,7 +199,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         ),
         _SettingsTile(
           icon: Icons.notifications_none_rounded,
-          title: 'Rappels quotidiens',
+          title: 'settings.reminders_title'.tr(),
           trailing: Switch.adaptive(
             value: _remindersEnabled,
             onChanged: (val) => setState(() => _remindersEnabled = val),
@@ -179,7 +208,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         ),
         _SettingsTile(
           icon: Icons.dark_mode_outlined,
-          title: 'Mode sombre',
+          title: 'settings.dark_mode_title'.tr(),
           trailing: Switch.adaptive(
             value: isDark,
             onChanged: (_) => ref.read(themeModeProvider.notifier).toggle(),
@@ -190,22 +219,74 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     );
   }
 
+  void _showLanguageModal() {
+    final Map<String, String> languages = {
+      'en': 'English',
+      'fr': 'Français',
+      'es': 'Español',
+      'pt': 'Português',
+      'ja': '日本語',
+      'zh': '中文',
+    };
+
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 16),
+              Text('settings.lang_title'.tr(), style: AppTypography.titleLarge),
+              const SizedBox(height: 16),
+              ...languages.entries.map((entry) {
+                final isSelected = context.locale.languageCode == entry.key;
+                return ListTile(
+                  title: Text(entry.value, style: AppTypography.bodyMedium),
+                  trailing: isSelected
+                      ? const Icon(
+                          Icons.check_circle_rounded,
+                          color: AppColors.gold,
+                        )
+                      : null,
+                  onTap: () {
+                    context.setLocale(Locale(entry.key));
+                    Navigator.pop(context);
+                  },
+                );
+              }),
+              const SizedBox(height: 16),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   void _showDeleteDialog(BuildContext context, WidgetRef ref) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: AppRadius.largeRadius),
-        title: Text('Supprimer le compte ?', style: AppTypography.headlineSmall),
+        title: Text(
+          'settings.dialog_delete_title'.tr(),
+          style: AppTypography.headlineSmall,
+        ),
         content: Text(
-          'Cette action est irréversible. Toutes vos données locales et messages anonymes seront dissociés.',
+          'settings.dialog_delete_content'.tr(),
           style: AppTypography.bodyMedium,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              'Annuler',
-              style: AppTypography.labelLarge.copyWith(color: AppColors.grey500),
+              'settings.btn_cancel'.tr(),
+              style: AppTypography.labelLarge.copyWith(
+                color: AppColors.grey500,
+              ),
             ),
           ),
           TextButton(
@@ -217,7 +298,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               context.go('/');
             },
             child: Text(
-              'Supprimer',
+              'settings.btn_delete'.tr(),
               style: AppTypography.labelLarge.copyWith(color: AppColors.error),
             ),
           ),
@@ -232,12 +313,14 @@ class _SettingsTile extends StatelessWidget {
   final String title;
   final String? subtitle;
   final Widget? trailing;
+  final VoidCallback? onTap;
 
   const _SettingsTile({
     required this.icon,
     required this.title,
     this.subtitle,
     this.trailing,
+    this.onTap,
   });
 
   @override
@@ -257,10 +340,19 @@ class _SettingsTile extends StatelessWidget {
         subtitle: subtitle != null
             ? Text(
                 subtitle!,
-                style: AppTypography.bodySmall.copyWith(color: AppColors.grey500),
+                style: AppTypography.bodySmall.copyWith(
+                  color: AppColors.grey500,
+                ),
               )
             : null,
-        trailing: trailing ?? const Icon(Icons.chevron_right_rounded, size: 20, color: AppColors.grey300),
+        trailing:
+            trailing ??
+            const Icon(
+              Icons.chevron_right_rounded,
+              size: 20,
+              color: AppColors.grey300,
+            ),
+        onTap: onTap,
       ),
     );
   }

@@ -3,12 +3,16 @@ class MessageEntity {
   final String id;
   final String senderId;
   final String content;
+  final String? senderCountryCode;
+  final String? senderCountryEmoji;
   final DateTime createdAt;
 
   const MessageEntity({
     required this.id,
     required this.senderId,
     required this.content,
+    this.senderCountryCode,
+    this.senderCountryEmoji,
     required this.createdAt,
   });
 
@@ -24,5 +28,5 @@ class MessageEntity {
 
   @override
   String toString() =>
-      'MessageEntity(id: $id, content: ${content.substring(0, content.length > 20 ? 20 : content.length)}...)';
+      'MessageEntity(id: $id, content: ${content.substring(0, content.length > 20 ? 20 : content.length)}..., country: $senderCountryCode)';
 }

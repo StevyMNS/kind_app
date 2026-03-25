@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kind_app/application/controllers/send_message_controller.dart';
+import 'package:kind_app/core/utils/country_utils.dart';
 import 'package:kind_app/core/theme/app_colors.dart';
 import 'package:kind_app/core/theme/app_typography.dart';
 import 'package:kind_app/presentation/widgets/kind_button.dart';
@@ -27,7 +29,16 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
 
   Future<void> _sendMessage() async {
     final notifier = ref.read(sendMessageControllerProvider.notifier);
-    final success = await notifier.send(_controller.text);
+    
+    // Récupérer le pays du sender via la locale
+    final countryCode = View.of(context).platformDispatcher.locale.countryCode;
+    final countryEmoji = countryCode != null ? CountryUtils.countryCodeToEmoji(countryCode) : null;
+
+    final success = await notifier.send(
+      _controller.text,
+      countryCode: countryCode,
+      countryEmoji: countryEmoji,
+    );
 
     if (success && mounted) {
       setState(() => _showSuccess = true);
@@ -49,7 +60,7 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Écrire un message'),
+        title: Text('write.title'.tr()),
       ),
       body: SafeArea(
         child: AnimatedSwitcher(
@@ -68,27 +79,38 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
-          Text(
-            'Partagez un mot de bienveillance',
-            style: AppTypography.headlineMedium.copyWith(
-              color: Theme.of(context).colorScheme.primary,
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 16),
+                  Text(
+                    'write.headline'.tr(),
+                    style: AppTypography.headlineMedium.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'write.subtitle'.tr(),
+                    style: AppTypography.bodyMedium.copyWith(
+                      color: AppColors.grey500,
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  KindTextField(
+                    controller: _controller,
+                    errorText: errorText,
+                    hintText: 'write.hint'.tr(),
+                  ),
+                ],
+              ),
             ),
           ),
-          const SizedBox(height: 8),
-          Text(
-            'Votre message sera envoyé anonymement à quelqu\'un dans le monde.',
-            style: AppTypography.bodyMedium.copyWith(color: AppColors.grey500),
-          ),
-          const SizedBox(height: 32),
-          KindTextField(
-            controller: _controller,
-            errorText: errorText,
-            hintText: 'Un encouragement, une prière, un sourire...',
-          ),
-          const Spacer(),
+          const SizedBox(height: 16),
           KindButton(
-            label: 'Envoyer avec amour',
+            label: 'write.btn_send'.tr(),
             icon: Icons.send_rounded,
             isLoading: sendState.isLoading,
             onPressed: _sendMessage,
@@ -122,14 +144,14 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'Message envoyé',
+              'write.success_title'.tr(),
               style: AppTypography.headlineMedium.copyWith(
                 color: AppColors.success,
               ),
             ),
             const SizedBox(height: 12),
             Text(
-              'Votre bienveillance voyage maintenant vers quelqu\'un...',
+              'write.success_subtitle'.tr(),
               style: AppTypography.bodyLarge.copyWith(
                 fontStyle: FontStyle.italic,
               ),

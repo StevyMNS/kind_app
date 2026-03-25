@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +15,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialiser la localisation de l'UI
+  await EasyLocalization.ensureInitialized();
 
   // Initialiser les locales pour le formatage des dates
   await initializeDateFormatting('fr_FR', null);
@@ -34,12 +38,25 @@ Future<void> main() async {
   AppLogger.info('Environnement configuré: ${EnvConfig.isConfigured}', 'INIT');
 
   runApp(
-    ProviderScope(
-      overrides: [
-        dailyLimitServiceProvider.overrideWithValue(DailyLimitService(prefs)),
-        statsServiceProvider.overrideWithValue(StatsService(prefs)),
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('fr'),
+        Locale('en'),
+        Locale('es'),
+        Locale('pt'),
+        Locale('ja'),
+        Locale('zh'),
       ],
-      child: const KindApp(),
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      useOnlyLangCode: true,
+      child: ProviderScope(
+        overrides: [
+          dailyLimitServiceProvider.overrideWithValue(DailyLimitService(prefs)),
+          statsServiceProvider.overrideWithValue(StatsService(prefs)),
+        ],
+        child: const KindApp(),
+      ),
     ),
   );
 }
@@ -53,12 +70,15 @@ class KindApp extends ConsumerWidget {
     final themeMode = ref.watch(themeModeProvider);
 
     return MaterialApp.router(
-      title: 'One Kind Message',
+      title: 'app_name'.tr(),
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
       routerConfig: appRouter,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
     );
   }
 }

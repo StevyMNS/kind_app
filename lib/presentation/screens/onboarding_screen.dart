@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kind_app/core/services/onboarding_service.dart';
@@ -37,9 +38,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   final List<_OnboardingStep> _steps = [
     _OnboardingStep(
-      title: 'Un message peut\nchanger une journée.',
-      subtitle:
-          'Recevez une prière anonyme ou un verset\npour illuminer votre quotidien.',
+      title: 'onboarding.step1_title'.tr(),
+      subtitle: 'onboarding.step1_subtitle'.tr(),
       icon: Icons.wb_sunny_rounded,
       illustration: _ArchIllustration(
         child: Icon(
@@ -50,9 +50,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       ),
     ),
     _OnboardingStep(
-      title: 'Envoyez de la\nlumière.',
-      subtitle:
-          'Partagez un mot bienveillant avec un inconnu.\nAnonymement. Sans jugement.',
+      title: 'onboarding.step2_title'.tr(),
+      subtitle: 'onboarding.step2_subtitle'.tr(),
       icon: Icons.send_rounded,
       illustration: _ArchIllustration(
         child: Icon(
@@ -62,17 +61,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         ),
       ),
     ),
-    const _OnboardingStep(
-      title: 'Anonyme.\nSimple.\nPaisible.',
-      subtitle: 'Un message par jour. Une prière\nsilencieuse. Rien de plus.',
+    _OnboardingStep(
+      title: 'onboarding.step3_title'.tr(),
+      subtitle: 'onboarding.step3_subtitle'.tr(),
       icon: Icons.self_improvement_rounded,
-      illustration: _ArchIllustration(
+      illustration: const _ArchIllustration(
         isLast: true,
-        child: Icon(
-          Icons.spa_rounded,
-          size: 72,
-          color: AppColors.gold,
-        ),
+        child: Icon(Icons.spa_rounded, size: 72, color: AppColors.gold),
       ),
     ),
   ];
@@ -84,10 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       vsync: this,
       duration: const Duration(milliseconds: 400),
     );
-    _fadeAnim = CurvedAnimation(
-      parent: _animController,
-      curve: Curves.easeIn,
-    );
+    _fadeAnim = CurvedAnimation(parent: _animController, curve: Curves.easeIn);
     _animController.forward();
   }
 
@@ -134,7 +126,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       : TextButton(
                           onPressed: _complete,
                           child: Text(
-                            'Passer',
+                            'onboarding.btn_skip'.tr(),
                             style: AppTypography.labelLarge.copyWith(
                               color: AppColors.grey500,
                             ),
@@ -247,7 +239,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         ),
                         onPressed: _isLastPage ? _complete : _nextPage,
                         child: Text(
-                          _isLastPage ? 'Commencer' : 'Suivant →',
+                          _isLastPage
+                              ? 'onboarding.btn_start'.tr()
+                              : 'onboarding.btn_next'.tr(),
                           style: AppTypography.labelLarge.copyWith(
                             color: AppColors.white,
                             fontSize: 16,
@@ -262,7 +256,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       TextButton(
                         onPressed: _complete,
                         child: Text(
-                          'Déjà un compte ? Se connecter',
+                          'onboarding.login_link'.tr(),
                           style: AppTypography.bodySmall.copyWith(
                             color: AppColors.grey500,
                           ),
