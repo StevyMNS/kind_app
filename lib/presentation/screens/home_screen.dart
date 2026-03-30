@@ -22,13 +22,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animController;
   late final Animation<double> _fadeAnimation;
-  late final String _phrase;
+  late final int _phraseIndex;
 
   @override
   void initState() {
     super.initState();
-    final index = Random().nextInt(6);
-    _phrase = 'home.contemplative_phrases.$index'.tr();
+    _phraseIndex = Random().nextInt(6);
 
     _animController = AnimationController(
       vsync: this,
@@ -117,9 +116,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Text(
-                    _phrase,
-                    style: AppTypography.bodyLarge.copyWith(
+                    Text(
+                      'home.contemplative_phrases.$_phraseIndex'.tr(),
+                      style: AppTypography.bodyLarge.copyWith(
                       fontStyle: FontStyle.italic,
                       height: 1.7,
                     ),

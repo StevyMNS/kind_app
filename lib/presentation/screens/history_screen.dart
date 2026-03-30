@@ -21,15 +21,15 @@ class HistoryScreen extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text('history.title'.tr()),
+          title: Text(context.tr('history.title')),
           bottom: TabBar(
             labelColor: AppColors.gold,
             unselectedLabelColor: AppColors.grey500,
             indicatorColor: AppColors.gold,
             labelStyle: AppTypography.labelLarge,
             tabs: [
-              Tab(text: 'history.tab_sent'.tr()),
-              Tab(text: 'history.tab_received'.tr()),
+              Tab(text: context.tr('history.tab_sent')),
+              Tab(text: context.tr('history.tab_received')),
             ],
           ),
         ),
@@ -166,7 +166,9 @@ class _MessageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateFormat = DateFormat('dd MMM yyyy, HH:mm', 'fr_FR');
+    // Utiliser la locale courante pour le formatage
+    final localeStr = context.locale.toString();
+    final dateFormat = DateFormat('dd MMM yyyy, HH:mm', localeStr);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -189,9 +191,12 @@ class _MessageTile extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 isSent
-                    ? 'history.status_sent'.tr()
-                    : 'history.status_received'.tr(),
-                style: AppTypography.labelSmall.copyWith(color: AppColors.gold),
+                    ? context.tr('history.status_sent')
+                    : context.tr('history.status_received'),
+                style: AppTypography.labelSmall.copyWith(
+                  color: AppColors.gold,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               const Spacer(),
               if (!isSent && message.senderCountryEmoji != null) ...[

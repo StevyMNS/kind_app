@@ -4,6 +4,7 @@ import 'package:kind_app/application/providers/usecase_providers.dart';
 import 'package:kind_app/core/constants/app_constants.dart';
 import 'package:kind_app/core/utils/logger.dart';
 import 'package:kind_app/domain/entities/message_entity.dart';
+import 'package:translator/translator.dart';
 
 /// État de l'historique avec pagination.
 class HistoryState {
@@ -41,8 +42,8 @@ class HistoryState {
 /// Provider de l'historique.
 final historyControllerProvider =
     AsyncNotifierProvider<HistoryController, HistoryState>(
-      HistoryController.new,
-    );
+  HistoryController.new,
+);
 
 /// Controller pour l'historique des messages avec pagination.
 class HistoryController extends AsyncNotifier<HistoryState> {
@@ -55,10 +56,13 @@ class HistoryController extends AsyncNotifier<HistoryState> {
         offset: 0,
         limit: AppConstants.pageSize,
       );
-      final received = await useCase.receivedMessages(
+      final rawReceived = await useCase.receivedMessages(
         offset: 0,
         limit: AppConstants.pageSize,
       );
+
+      // Traduire les messages reçus
+      final received = await _translateMessages(rawReceived);
 
       return HistoryState(
         sentMessages: sent,
@@ -70,6 +74,38 @@ class HistoryController extends AsyncNotifier<HistoryState> {
       AppLogger.error('Erreur chargement historique', e, st);
       rethrow;
     }
+  }
+
+  /// Traduit une liste de messages reçus vers la locale courante.
+  Future<List<MessageEntity>> _translateMessages(
+    List<MessageEntity> messages,
+  ) async {
+    if (messages.isEmpty) return messages;
+
+    final translator = GoogleTranslator();
+    final translatedMessages = <MessageEntity>[];
+
+    for (final msg in messages) {
+      try {
+        final translation = await translator.translate(msg.content);
+
+        translatedMessages.add(
+          MessageEntity(
+            id: msg.id,
+            senderId: msg.senderId,
+            content: translation.text,
+            createdAt: msg.createdAt,
+            senderCountryCode: msg.senderCountryCode,
+            senderCountryEmoji: msg.senderCountryEmoji,
+          ),
+        );
+      } catch (e) {
+        AppLogger.error('Erreur de traduction pour le message ${msg.id}: $e');
+        translatedMessages.add(msg);
+      }
+    }
+
+    return translatedMessages;
   }
 
   /// Charge plus de messages envoyés.
@@ -112,15 +148,18 @@ class HistoryController extends AsyncNotifier<HistoryState> {
 
     try {
       final useCase = ref.read(getMessageHistoryUseCaseProvider);
-      final moreReceived = await useCase.receivedMessages(
+      final rawMoreReceived = await useCase.receivedMessages(
         offset: current.receivedMessages.length,
         limit: AppConstants.pageSize,
       );
 
+      // Traduire le nouveau lot
+      final moreReceived = await _translateMessages(rawMoreReceived);
+
       state = AsyncData(
         current.copyWith(
           receivedMessages: [...current.receivedMessages, ...moreReceived],
-          hasMoreReceived: moreReceived.length >= AppConstants.pageSize,
+          hasMoreReceived: rawMoreReceived.length >= AppConstants.pageSize,
           isLoadingMore: false,
         ),
       );

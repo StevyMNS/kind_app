@@ -36,7 +36,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   late AnimationController _animController;
   late Animation<double> _fadeAnim;
 
-  final List<_OnboardingStep> _steps = [
+  List<_OnboardingStep> get _steps => [
     _OnboardingStep(
       title: 'onboarding.step1_title'.tr(),
       subtitle: 'onboarding.step1_subtitle'.tr(),
