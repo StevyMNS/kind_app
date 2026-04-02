@@ -52,7 +52,12 @@
     "btn_skip": "Passer",
     "btn_next": "Suivant →",
     "btn_start": "Commencer",
-    "login_link": "Déjà un compte ? Se connecter"
+    "login_link": "Déjà un compte ? Se connecter",
+    "terms_of_use": "Conditions d'utilisation",
+    "privacy_policy": "Politique de confidentialité",
+    "accept_terms_part1": "J'accepte les ",
+    "accept_terms_part2": " et la ",
+    "accept_terms_error": "Vous devez accepter les conditions pour continuer."
   },
   "receive": {
     "title": "Message reçu",

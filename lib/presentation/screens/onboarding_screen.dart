@@ -33,6 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     with TickerProviderStateMixin {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+  bool _acceptedTerms = false;
   late AnimationController _animController;
   late Animation<double> _fadeAnim;
 
@@ -100,6 +101,16 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   }
 
   Future<void> _complete() async {
+    if (_isLastPage && !_acceptedTerms) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('onboarding.accept_terms_error'.tr()),
+          backgroundColor: Colors.red.shade400,
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+      return;
+    }
     await OnboardingService.setOnboardingCompleted();
     if (!mounted) return;
     context.go('/home');
@@ -223,6 +234,63 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       ),
                     ),
                     const SizedBox(height: 32),
+
+                    // Cases à cocher sur la dernière page
+                    if (_isLastPage) ...[
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Checkbox(
+                            value: _acceptedTerms,
+                            onChanged: (val) {
+                              setState(() => _acceptedTerms = val ?? false);
+                            },
+                            activeColor: AppColors.gold,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: Wrap(
+                                children: [
+                                  Text(
+                                    'onboarding.accept_terms_part1'.tr(),
+                                    style: AppTypography.bodySmall,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () => context.push('/terms'),
+                                    child: Text(
+                                      'onboarding.terms_of_use'.tr(),
+                                      style: AppTypography.bodySmall.copyWith(
+                                        color: AppColors.gold,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    'onboarding.accept_terms_part2'.tr(),
+                                    style: AppTypography.bodySmall,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () => context.push('/privacy'),
+                                    child: Text(
+                                      'onboarding.privacy_policy'.tr(),
+                                      style: AppTypography.bodySmall.copyWith(
+                                        color: AppColors.gold,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                    ],
 
                     // Bouton principal
                     SizedBox(

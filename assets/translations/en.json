@@ -52,7 +52,12 @@
     "btn_skip": "Skip",
     "btn_next": "Next →",
     "btn_start": "Start",
-    "login_link": "Already have an account? Log in"
+    "login_link": "Already have an account? Log in",
+    "terms_of_use": "Terms of Use",
+    "privacy_policy": "Privacy Policy",
+    "accept_terms_part1": "I accept the ",
+    "accept_terms_part2": " and the ",
+    "accept_terms_error": "You must accept the terms to continue."
   },
   "receive": {
     "title": "Message received",

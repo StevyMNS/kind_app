@@ -7,7 +7,9 @@ import 'package:kind_app/presentation/screens/receive_screen.dart';
 import 'package:kind_app/presentation/screens/settings_screen.dart';
 import 'package:kind_app/presentation/screens/splash_screen.dart';
 import 'package:kind_app/presentation/screens/write_screen.dart';
+import 'package:kind_app/presentation/screens/legal_screen.dart';
 import 'package:kind_app/presentation/widgets/scaffold_with_bottom_nav.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 /// Configuration du routeur GoRouter avec BottomNav.
 final appRouter = GoRouter(
@@ -103,6 +105,52 @@ final appRouter = GoRouter(
             begin: begin,
             end: end,
           ).chain(CurveTween(curve: Curves.easeOutCubic));
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
+      ),
+    ),
+    
+    // Privacy Policy
+    GoRoute(
+      path: '/privacy',
+      name: 'privacy',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: LegalScreen(
+          title: 'onboarding.privacy_policy'.tr(),
+          baseAssetPath: 'assets/docs/privacy_policy',
+        ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          final tween = Tween(begin: begin, end: end)
+              .chain(CurveTween(curve: Curves.easeOutCubic));
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
+      ),
+    ),
+
+    // Terms of Use
+    GoRoute(
+      path: '/terms',
+      name: 'terms',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: LegalScreen(
+          title: 'onboarding.terms_of_use'.tr(),
+          baseAssetPath: 'assets/docs/terms_of_use',
+        ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          final tween = Tween(begin: begin, end: end)
+              .chain(CurveTween(curve: Curves.easeOutCubic));
           return SlideTransition(
             position: animation.drive(tween),
             child: child,

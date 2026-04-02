@@ -20,6 +20,7 @@ Pas de likes, pas de commentaires, pas de profils publics. Juste des mots qui fo
 * **Historique Personnel** : Retrouvez les messages que vous avez envoyés et ceux qui ont illuminé votre journée.
 * **Statistiques "Mon Parcours"** : Suivez votre régularité avec un compteur de "Jours Actifs" (Streak).
 * **Mode Sombre & Clair** : Transitions douces et support natif du mode sombre.
+* **Conformité & RGPD** : L'intégration inclut l'acceptation explicite de la politique de confidentialité (aucune donnée personnelle) et des conditions d'utilisation (bienveillance exigée).
 
 ## 🏗️ Stack Technique
 
